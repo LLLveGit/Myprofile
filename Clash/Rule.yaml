@@ -64,13 +64,13 @@ proxy-providers:
 proxies: null
 proxy-groups:
 #分流分组
-  - {name: Global, <<: *a3}
+  - {name: Global,  <<: *a3}
   - {name: Ai,      type: select, proxies: [US, SG, HK, JP, TW, Select]}
   - {name: Game,    type: select, proxies: [HK, JP, TW, US, SG, Select, DIRECT]}
   - {name: TikTok,  type: select, proxies: [JP, TW, US, SG, HK, Select]}
   - {name: Adblock, type: select, proxies: [REJECT, DIRECT]}
   - {name: Final,   type: select, proxies: [Auto, DIRECT]}
-  - {name: Select, <<: *a2}
+  - {name: Select,  <<: *a2}
 #节点分组
   - {name: Auto, <<: *a4}
   - {name: HK,   <<: *a4, filter: "港|HK|(?i)Hong"}
