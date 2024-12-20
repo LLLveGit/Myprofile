@@ -83,8 +83,8 @@ rule-providers:
   AdvertisingMiTV:  {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingMiTV/AdvertisingMiTV.yaml,   path: ./ruleset/AdvertisingMiTV.yaml} 
   Direct:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Direct/Direct.yaml,                     path: ./ruleset/Direct.yaml}
   EasyPrivacy:      {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/EasyPrivacy/EasyPrivacy_Classical.yaml, path: ./ruleset/EasyPrivacy.yaml} 
-  Hijacking:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Hijacking/Hijacking.yaml,               path: ./ruleset/Hijacking.yaml} 
-  Privacy:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Privacy/Privacy_Classical.yaml,         path: ./ruleset/Privacy.yaml} 
+#  Hijacking:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Hijacking/Hijacking.yaml,               path: ./ruleset/Hijacking.yaml} 
+#  Privacy:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Privacy/Privacy_Classical.yaml,         path: ./ruleset/Privacy.yaml} 
   Lan:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.yaml,                           path: ./ruleset/Lan.yaml}
   China:            {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/China/China_Classical.yaml,             path: ./ruleset/China.yaml}
   ChinaDNS:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaDNS/ChinaDNS.yaml,                 path: ./ruleset/ChinaDNS.yaml} 
@@ -106,8 +106,8 @@ rules:
   - RULE-SET,AdvertisingMiTV,Adblock
   - RULE-SET,Direct,DIRECT
   - RULE-SET,EasyPrivacy,Adblock
-  - RULE-SET,Hijacking,Adblock
-  - RULE-SET,Privacy,Adblock
+#  - RULE-SET,Hijacking,Adblock
+#  - RULE-SET,Privacy,Adblock
   - RULE-SET,Lan,DIRECT
   - RULE-SET,China,DIRECT
   - RULE-SET,ChinaDNS,DIRECT
