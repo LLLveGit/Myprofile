@@ -1,49 +1,12 @@
 #==========================================
 # 2024/12/20
 #==========================================
-port: 7890           # HTTP 代理端口
-socks-port: 7891     # Socks 端口
-redir-port: 7892     # Redir 端口
-mixed-port: 7893     # 混合端口
-allow-lan: true      # 允许局域网连接
-bind-address: "*"    # 地址绑定
-mode: rule           # 规则模式
-log-level: info      # 日志级别
-ipv6: false          # IPV6开关
-external-controller: 127.0.0.1:9090
-#==========================================
-dns:
-  enable: true       # 不使用系统 DNS
-  ipv6: false        # 关闭 IPV6
-  listen: 0.0.0.0:53 # dns 监听
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - "*.lan"
-    - localhost.ptlogin2.qq.com
-    - +.srv.nintendo.net
-    - +.stun.playstation.net
-    - +.msftconnecttest.com
-    - +.msftncsi.com
-    - +.xboxlive.com
-    - msftconnecttest.com
-    - xbox.*.microsoft.com
-    - "*.battlenet.com.cn"
-    - "*.battlenet.com"
-    - "*.blzstatic.cn"
-    - "*.battle.net"
-  nameserver:        # 默认 DNS 服务
-    - 223.5.5.5
-    - 119.29.29.29
-  fallback:          # 国外 DNS 服务器
-    - https://cloudflare-dns.com/dns-query
-    - https://dns.google/dns-query
-    - https://dns.alidns.com/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: :9090
 #==========================================
 pr:   &a3 {type: select,   proxies: [Auto, Select, HK, JP, TW, US, SG, DIRECT] }
 p:    &a1 {type: http,     interval: 86400,  health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800} }
@@ -59,7 +22,8 @@ proxy-providers:
     url: 123
     path: ./proxy_providers/tmp.yaml
 #==========================================
-proxies: null
+proxies: ~
+#==========================================
 proxy-groups:
 #分流分组
   - {name: Global,  <<: *a3}
@@ -76,18 +40,18 @@ proxy-groups:
   - {name: TW,   <<: *a4, filter: "台|湾|TW|(?i)Taiwan"}
   - {name: US,   <<: *a4, filter: "美|US|(?i)States|American"}
   - {name: SG,   <<: *a4, filter: "新|坡|SG|(?i)Singapore"}
-# 分流规则 
+#==========================================
 rule-providers:
-  Revision:  {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision.yaml,   path: ./ruleset/Revision.yaml} 
+  Revision:         {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision.yaml,                                           path: ./ruleset/Revision.yaml} 
   AdvertisingMiTV:  {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingMiTV/AdvertisingMiTV.yaml,   path: ./ruleset/AdvertisingMiTV.yaml} 
-#  Direct_y:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Direct/Direct.yaml,                     path: ./ruleset/Direct.yaml}
+  Direct_y:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Direct/Direct.yaml,                     path: ./ruleset/Direct.yaml}
   EasyPrivacy:      {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/EasyPrivacy/EasyPrivacy_Classical.yaml, path: ./ruleset/EasyPrivacy.yaml} 
   Hijacking:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Hijacking/Hijacking.yaml,               path: ./ruleset/Hijacking.yaml} 
   Privacy:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Privacy/Privacy_Classical.yaml,         path: ./ruleset/Privacy.yaml} 
   Lan:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.yaml,                           path: ./ruleset/Lan.yaml}
   China:            {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/China/China_Classical.yaml,             path: ./ruleset/China.yaml}
   ChinaDNS:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaDNS/ChinaDNS.yaml,                 path: ./ruleset/ChinaDNS.yaml} 
-#  Download:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Download/Download.yaml,                 path: ./ruleset/Download.yaml}
+  Download:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Download/Download.yaml,                 path: ./ruleset/Download.yaml}
   OpenAi:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.yaml,                     path: ./ruleset/OpenAi.yaml}
   Bing:             {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Bing/Bing.yaml,                         path: ./ruleset/Bing.yaml}
   Copilot:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Copilot/Copilot.yaml,                   path: ./ruleset/Copilot.yaml}
@@ -100,18 +64,18 @@ rule-providers:
   TikTok_y:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.yaml,                     path: ./ruleset/TikTok.yaml} 
   GoogleFCM:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GoogleFCM/GoogleFCM.yaml,               path: ./ruleset/GoogleFCM.yaml} 
   Global_Cl:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global_Classical.yaml,           path: ./ruleset/Global.yaml} 
-# 分流Policy 
+#==========================================
 rules:
   - RULE-SET,Revision,DIRECT
   - RULE-SET,AdvertisingMiTV,Adblock
-#  - RULE-SET,Direct_y,DIRECT
+  - RULE-SET,Direct_y,DIRECT
   - RULE-SET,EasyPrivacy,Adblock
   - RULE-SET,Hijacking,Adblock
   - RULE-SET,Privacy,Adblock
   - RULE-SET,Lan,DIRECT
   - RULE-SET,China,DIRECT
   - RULE-SET,ChinaDNS,DIRECT
-#  - RULE-SET,Download,DIRECT
+  - RULE-SET,Download,DIRECT
   - RULE-SET,OpenAi,Ai
   - RULE-SET,Bing,Ai
   - RULE-SET,Gemini,Ai
@@ -126,9 +90,3 @@ rules:
   - RULE-SET,Global_Cl,Global
   - GEOIP,CN,DIRECT
   - MATCH,Final
-#==========================================
-# TUN模式是通过在操作系统上安装一个虚拟网卡来实现的，它可以接管所有的网络流量，并将流量转发至Clash，然后由Clash发出请求
-# Windows 系统中如何启用TUN模式
-# 1、运行 Clash For Windows, 确保使用规则模式，并可以联网
-# 2、点击 General中的Service Mode右侧的Manage按钮，在弹出窗口中选择schtasks，安装服务模式。安装完成后，应用程序会自动重启，Service Mode右侧的地球图标变为绿色表示安装成功
-# 3、点击 General中的TUN Mode右侧的开关以启动TUN模式
