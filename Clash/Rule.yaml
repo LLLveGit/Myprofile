@@ -44,14 +44,11 @@ proxy-groups:
 rule-providers:
   Revision:         {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision.yaml,                                           path: ./ruleset/Revision.yaml} 
   AdvertisingMiTV:  {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingMiTV/AdvertisingMiTV.yaml,   path: ./ruleset/AdvertisingMiTV.yaml} 
-  Direct_y:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Direct/Direct.yaml,                     path: ./ruleset/Direct.yaml}
+  LocalAreaNetwork: {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/LocalAreaNetwork.yaml,                          path: ./ruleset/LocalAreaNetwork.yaml}
+  UnBan:            {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/UnBan.yaml,                                     path: ./ruleset/UnBan.yaml}
   EasyPrivacy:      {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/EasyPrivacy/EasyPrivacy_Classical.yaml, path: ./ruleset/EasyPrivacy.yaml} 
   Hijacking:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Hijacking/Hijacking.yaml,               path: ./ruleset/Hijacking.yaml} 
   Privacy:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Privacy/Privacy_Classical.yaml,         path: ./ruleset/Privacy.yaml} 
-  Lan:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.yaml,                           path: ./ruleset/Lan.yaml}
-  China:            {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/China/China_Classical.yaml,             path: ./ruleset/China.yaml}
-  ChinaDNS:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaDNS/ChinaDNS.yaml,                 path: ./ruleset/ChinaDNS.yaml} 
-  Download:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Download/Download.yaml,                 path: ./ruleset/Download.yaml}
   OpenAi:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.yaml,                     path: ./ruleset/OpenAi.yaml}
   Bing:             {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Bing/Bing.yaml,                         path: ./ruleset/Bing.yaml}
   Copilot:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Copilot/Copilot.yaml,                   path: ./ruleset/Copilot.yaml}
@@ -62,31 +59,32 @@ rule-providers:
   Ubisoft:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Ubisoft/Ubisoft.yaml,                   path: ./ruleset/Ubisoft.yaml} 
   Origin:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Origin/Origin.yaml,                     path: ./ruleset/Origin.yaml} 
   TikTok_y:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.yaml,                     path: ./ruleset/TikTok.yaml} 
-  GoogleFCM:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GoogleFCM/GoogleFCM.yaml,               path: ./ruleset/GoogleFCM.yaml} 
-  Global_Cl:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global_Classical.yaml,           path: ./ruleset/Global.yaml} 
+  ProxyMedia:       {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ProxyMedia.yaml,                                path: ./ruleset/ProxyMedia.yaml}
+  ProxyLite:        {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ProxyLite.yaml,                                 path: ./ruleset/ProxyLite.yaml} 
+  ChinaDomain:      {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ChinaDomain.yaml,                               path: ./ruleset/ChinaDomain.yaml}
+  ChinaCompanyIp:   {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ChinaCompanyIp.yaml,                            path: ./ruleset/ChinaCompanyIp.yaml} 
 #==========================================
 rules:
   - RULE-SET,Revision,DIRECT
   - RULE-SET,AdvertisingMiTV,Adblock
-  - RULE-SET,Direct_y,DIRECT
+  - RULE-SET,LocalAreaNetwork,DIRECT  
+  - RULE-SET,UnBan,DIRECT
   - RULE-SET,EasyPrivacy,Adblock
   - RULE-SET,Hijacking,Adblock
   - RULE-SET,Privacy,Adblock
-  - RULE-SET,Lan,DIRECT
-  - RULE-SET,China,DIRECT
-  - RULE-SET,ChinaDNS,DIRECT
-  - RULE-SET,Download,DIRECT
   - RULE-SET,OpenAi,Ai
   - RULE-SET,Bing,Ai
+  - RULE-SET,Copilot,Ai
   - RULE-SET,Gemini,Ai
-  - RULE-SET,OpenAi,Ai
   - RULE-SET,Bahamut,TW
   - RULE-SET,Steam,Game
   - RULE-SET,Epic,Game
   - RULE-SET,Ubisoft,Game
   - RULE-SET,Origin,Game
   - RULE-SET,TikTok_y,TikTok
-  - RULE-SET,GoogleFCM,Global
-  - RULE-SET,Global_Cl,Global
+  - RULE-SET,ProxyMedia,Global
+  - RULE-SET,ProxyLite,Global
+  - RULE-SET,ChinaDomain,DIRECT
+  - RULE-SET,ChinaCompanyIp,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,Final
