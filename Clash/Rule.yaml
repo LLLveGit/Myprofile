@@ -42,7 +42,8 @@ proxy-groups:
   - {name: SG,   <<: *a4, filter: "新|坡|SG|(?i)Singapore"}
 #==========================================
 rule-providers:
-  Revision:         {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision.yaml,                                           path: ./ruleset/Revision.yaml} 
+  Revision_direct:  {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_direct.yaml,                                    path: ./ruleset/Revision_direct.yaml} 
+  Revision_ai:      {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_ai.yaml,                                        path: ./ruleset/Revision_ai.yaml}
   AdvertisingMiTV:  {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingMiTV/AdvertisingMiTV.yaml,   path: ./ruleset/AdvertisingMiTV.yaml} 
   LocalAreaNetwork: {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/LocalAreaNetwork.yaml,                          path: ./ruleset/LocalAreaNetwork.yaml}
   UnBan:            {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/UnBan.yaml,                                     path: ./ruleset/UnBan.yaml}
@@ -65,7 +66,8 @@ rule-providers:
   ChinaCompanyIp:   {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ChinaCompanyIp.yaml,                            path: ./ruleset/ChinaCompanyIp.yaml} 
 #==========================================
 rules:
-  - RULE-SET,Revision,DIRECT
+  - RULE-SET,Revision_direct,DIRECT
+  - RULE-SET,Revision_ai,Ai
   - RULE-SET,AdvertisingMiTV,Adblock
   - RULE-SET,LocalAreaNetwork,DIRECT  
   - RULE-SET,UnBan,DIRECT
