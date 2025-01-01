@@ -1,5 +1,5 @@
 #==========================================
-# 2024/12/22
+# 2025/01/01
 #==========================================
 port: 7890
 socks-port: 7891
@@ -63,7 +63,7 @@ rule-providers:
   ProxyMedia:       {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ProxyMedia.yaml,                                path: ./ruleset/ProxyMedia.yaml}
   ProxyLite:        {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ProxyLite.yaml,                                 path: ./ruleset/ProxyLite.yaml} 
   ChinaDomain:      {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ChinaDomain.yaml,                               path: ./ruleset/ChinaDomain.yaml}
-  ChinaCompanyIp:   {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ChinaCompanyIp.yaml,                            path: ./ruleset/ChinaCompanyIp.yaml} 
+  ChinaCompanyIp:   {<<: *a7, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ChinaCompanyIp.yaml,                            path: ./ruleset/ChinaCompanyIp.yaml} 
 #==========================================
 rules:
   - RULE-SET,Revision_direct,DIRECT
