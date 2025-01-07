@@ -84,7 +84,7 @@ rules:
   - RULE-SET,Gemini,Ai
   - RULE-SET,Bahamut,TW
   - RULE-SET,Binance,KJT
-  - RULE-SET,OKX,KJT
+  - RULE-SET,OKX,THK
   - RULE-SET,Steam,Game
   - RULE-SET,Epic,Game
   - RULE-SET,Ubisoft,Game
