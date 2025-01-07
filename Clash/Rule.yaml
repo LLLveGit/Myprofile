@@ -59,6 +59,7 @@ rule-providers:
   Bahamut:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Bahamut/Bahamut.yaml,                   path: ./ruleset/Bahamut.yaml} 
   Binance:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Binance/Binance.yaml,                   path: ./ruleset/Binance.yaml}
   OKX:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OKX/OKX.yaml,                           path: ./ruleset/OKX.yaml} 
+  bybit:            {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_bybit.yaml,                                     path: ./ruleset/bybit.yaml} 
   Steam:            {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Steam/Steam.yaml,                       path: ./ruleset/Steam.yaml} 
   Epic:             {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Epic/Epic.yaml,                         path: ./ruleset/Epic.yaml} 
   Ubisoft:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Ubisoft/Ubisoft.yaml,                   path: ./ruleset/Ubisoft.yaml} 
@@ -85,6 +86,7 @@ rules:
   - RULE-SET,Bahamut,TW
   - RULE-SET,Binance,KJT
   - RULE-SET,OKX,THK
+  - RULE-SET,bybit,KJT
   - RULE-SET,Steam,Game
   - RULE-SET,Epic,Game
   - RULE-SET,Ubisoft,Game
