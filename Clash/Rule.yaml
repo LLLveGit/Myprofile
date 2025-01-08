@@ -1,5 +1,5 @@
 #==========================================
-# 2025/01/07
+# 2025/01/08
 #==========================================
 port: 7890
 socks-port: 7891
@@ -45,7 +45,6 @@ proxy-groups:
 #==========================================
 rule-providers:
   Revision_direct:  {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_direct.yaml,                                    path: ./ruleset/Revision_direct.yaml} 
-  Revision_ai:      {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_ai.yaml,                                        path: ./ruleset/Revision_ai.yaml}
   AdvertisingMiTV:  {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingMiTV/AdvertisingMiTV.yaml,   path: ./ruleset/AdvertisingMiTV.yaml} 
   LocalAreaNetwork: {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/LocalAreaNetwork.yaml,                          path: ./ruleset/LocalAreaNetwork.yaml}
   UnBan:            {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/UnBan.yaml,                                     path: ./ruleset/UnBan.yaml}
@@ -59,7 +58,6 @@ rule-providers:
   Bahamut:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Bahamut/Bahamut.yaml,                   path: ./ruleset/Bahamut.yaml} 
   Binance:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Binance/Binance.yaml,                   path: ./ruleset/Binance.yaml}
   OKX:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OKX/OKX.yaml,                           path: ./ruleset/OKX.yaml} 
-  bybit:            {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_bybit.yaml,                                     path: ./ruleset/bybit.yaml} 
   Steam:            {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Steam/Steam.yaml,                       path: ./ruleset/Steam.yaml} 
   Epic:             {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Epic/Epic.yaml,                         path: ./ruleset/Epic.yaml} 
   Ubisoft:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Ubisoft/Ubisoft.yaml,                   path: ./ruleset/Ubisoft.yaml} 
@@ -72,7 +70,7 @@ rule-providers:
 #==========================================
 rules:
   - RULE-SET,Revision_direct,DIRECT
-  - RULE-SET,Revision_ai,Ai
+  - DOMAIN-SUFFIX,perplexity.ai,Ai
   - RULE-SET,AdvertisingMiTV,Adblock
   - RULE-SET,LocalAreaNetwork,DIRECT  
   - RULE-SET,UnBan,DIRECT
@@ -86,7 +84,8 @@ rules:
   - RULE-SET,Bahamut,TW
   - RULE-SET,Binance,KJT
   - RULE-SET,OKX,THK
-  - RULE-SET,bybit,KJT
+  - DOMAIN-KEYWORD,bybit,KJT
+  - DOMAIN-KEYWORD,gate,TW
   - RULE-SET,Steam,Game
   - RULE-SET,Epic,Game
   - RULE-SET,Ubisoft,Game
