@@ -70,7 +70,6 @@ rule-providers:
 #==========================================
 rules:
   - RULE-SET,Revision_direct,DIRECT
-  - DOMAIN-SUFFIX,perplexity.ai,Ai
   - RULE-SET,AdvertisingMiTV,Adblock
   - RULE-SET,LocalAreaNetwork,DIRECT  
   - RULE-SET,UnBan,DIRECT
@@ -81,6 +80,7 @@ rules:
   - RULE-SET,Bing,Ai
   - RULE-SET,Copilot,Ai
   - RULE-SET,Gemini,Ai
+  - DOMAIN-SUFFIX,perplexity.ai,Ai
   - RULE-SET,Bahamut,TW
   - RULE-SET,Binance,KJT
   - RULE-SET,OKX,THK
