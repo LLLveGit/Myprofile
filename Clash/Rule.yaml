@@ -1,5 +1,5 @@
 #==========================================
-# 2025/01/08
+# 2025/01/23
 #==========================================
 port: 7890
 socks-port: 7891
@@ -19,7 +19,7 @@ i:    &a7 {type: http,     behavior: ipcidr,    interval: 86400}
 proxy-providers:
   Subscribe:
     <<: *a1
-    url: 123
+    url: 
     path: ./proxy_providers/tmp.yaml
 #==========================================
 proxies: ~
@@ -36,11 +36,11 @@ proxy-groups:
 #节点分组
   - {name: Auto, <<: *a4}
   - {name: HK,   <<: *a4, filter: "港|HK|(?i)Hong"}
-  - {name: JP,   <<: *a4, filter: "日|东京|JP|(?i)Japan"}
+  - {name: JP,   <<: *a4, filter: "日本|东京|JP|(?i)Japan"}
   - {name: TW,   <<: *a4, filter: "台|湾|TW|(?i)Taiwan"}
   - {name: US,   <<: *a4, filter: "美|US|(?i)States|American"}
   - {name: SG,   <<: *a4, filter: "新|坡|SG|(?i)Singapore"}
-  - {name: KJT,  <<: *a4, filter: "韩|KR|(?i)Korea|日|东京|JP|(?i)Japan|台|湾|TW|(?i)Taiwan"}
+  - {name: KJT,  <<: *a4, filter: "韩|KR|(?i)Korea|日本|东京|JP|(?i)Japan|台|湾|TW|(?i)Taiwan"}
   - {name: THK,  <<: *a4, filter: "台|湾|TW|(?i)Taiwan|港|HK|(?i)Hong|韩|KR|(?i)Korea"}
 #==========================================
 rule-providers:
