@@ -37,7 +37,7 @@ i:    &a7 {type: http,     behavior: ipcidr,    interval: 86400}
 proxy-providers:
   Subscribe:
     <<: *a1
-    url: 123
+    url: 456
     path: ./proxy_providers/tmp.yaml
 #==========================================
 proxy-groups:
