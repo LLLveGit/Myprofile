@@ -40,8 +40,6 @@ proxy-providers:
     url: 123
     path: ./proxy_providers/tmp.yaml
 #==========================================
-proxies: ~
-#==========================================
 proxy-groups:
 #分流分组
   - {name: Global,  <<: *a3}
@@ -63,6 +61,8 @@ proxy-groups:
 #==========================================
 rule-providers:
   Revision_direct:  {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_direct.yaml,                                    path: ./ruleset/Revision_direct.yaml} 
+  AppleID:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleID/AppleID.yaml,                   path: ./ruleset/AppleID.yaml} 
+  iCloud:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/iCloud/iCloud.yaml,                     path: ./ruleset/iCloud.yaml} 
   AdvertisingMiTV:  {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingMiTV/AdvertisingMiTV.yaml,   path: ./ruleset/AdvertisingMiTV.yaml} 
   LocalAreaNetwork: {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/LocalAreaNetwork.yaml,                          path: ./ruleset/LocalAreaNetwork.yaml}
   UnBan:            {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/UnBan.yaml,                                     path: ./ruleset/UnBan.yaml}
@@ -88,6 +88,8 @@ rule-providers:
 #==========================================
 rules:
   - RULE-SET,Revision_direct,DIRECT
+  - RULE-SET,AppleID,DIRECT
+  - RULE-SET,iCloud,DIRECT
   - RULE-SET,AdvertisingMiTV,Adblock
   - RULE-SET,LocalAreaNetwork,DIRECT  
   - RULE-SET,UnBan,DIRECT
