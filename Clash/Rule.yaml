@@ -1,30 +1,48 @@
 #==========================================
-# 2025/01/26
+# 2025/01/27
 #==========================================
-mixed-port: 7890
-allow-lan: true
-bind-address: '*'
-mode: rule
-unified-delay: true
-ipv6: false
-log-level: silent
-experimental:
-    ignore-resolve-fail: true
-tcp-concurrent: true
-global-client-fingerprint: random
-external-controller: '127.0.0.1:9090'
+port: 7890           # HTTP 代理端口
+socks-port: 7891     # Socks 端口
+redir-port: 7892     # Redir 端口
+mixed-port: 7893     # 混合端口
+allow-lan: true      # 允许局域网连接
+bind-address: "*"    # 地址绑定
+mode: rule           # 规则模式
+log-level: info      # 日志级别
+ipv6: false          # IPV6开关
+external-controller: 127.0.0.1:9090
 dns:
-    enable: true
-    ipv6: false
-    enhanced-mode: fake-ip
-    use-hosts: true
-    fake-ip-range: 198.18.0.1/16
-    fake-ip-filter: [+.lan, +.local, localhost.ptlogin2.qq.com, 'Mijia Cloud', courier.push.apple.com]
-    default-nameserver: [223.5.5.5, 119.29.29.29, 114.114.114.114, '[2402:4e00::]:853', '[2400:3200::1]:853']
-    nameserver: [223.5.5.5, 119.29.29.29, 117.50.11.11, 114.114.114.114, 'https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query', 'tls://[2001:4860:4860::8844]:853', 'tls://[2606:4700:4700::1001]:853']
-    proxy-server-nameserver: ['https://doh.pub/dns-query']
-    fallback: ['tcp://8.8.8.8:53', 'tcp://8.8.4.4:53', 'tcp://208.67.222.222:443', 'tcp://208.67.220.220:443', 'https://1.0.0.1/dns-query', 'tls://dns.rubyfish.cn:853', 'tls://1.0.0.1:853', 'tls://dns.google:853', 'https://dns.rubyfish.cn/dns-query', 'https://cloudflare-dns.com/dns-query', 'https://dns.google/dns-query']
-    fallback-filter: { geoip: true, geoip-code: CN, ipcidr: [240.0.0.0/4], domain: [+.google.com, +.googleapis.com, +.youtube.com, +.appspot.com, +.telegram.com, +.facebook.com, +.twitter.com, +.blogger.com, +.gmail.com, +.gvt1.com] }
+  enable: true       # 不使用系统 DNS
+  ipv6: false        # 关闭 IPV6
+  listen: 0.0.0.0:53 # dns 监听
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - localhost.ptlogin2.qq.com
+    - +.srv.nintendo.net
+    - +.stun.playstation.net
+    - +.msftconnecttest.com
+    - +.msftncsi.com
+    - +.xboxlive.com
+    - msftconnecttest.com
+    - xbox.*.microsoft.com
+    - "*.battlenet.com.cn"
+    - "*.battlenet.com"
+    - "*.blzstatic.cn"
+    - "*.battle.net"
+  nameserver:        # 默认 DNS 服务
+    - 223.5.5.5
+    - 119.29.29.29
+  fallback:          # 国外 DNS 服务器
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
 #==========================================
 pr:   &a3 {type: select,   proxies: [Auto, Select, HK, JP, TW, US, SG, DIRECT] }
 p:    &a1 {type: http,     interval: 86400,  health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800} }
@@ -37,7 +55,9 @@ i:    &a7 {type: http,     behavior: ipcidr,    interval: 86400}
 proxy-providers:
   Subscribe:
     <<: *a1
-    url: 456
+    url: 123
+    # URL后面填写格式1[单一订阅]: 直接填写你的机场Clash订阅[推荐此种方式，避免订阅泄露]
+    # URL后面填写格式2[多个订阅]：https://api.nexconvert.com/sub?target=clash&url=请手动填入你的订阅(多机场订阅用|分割即可)&emoji=true&list=true&new_name=true&udp=false
     path: ./proxy_providers/tmp.yaml
 #==========================================
 proxy-groups:
