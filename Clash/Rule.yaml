@@ -1,14 +1,30 @@
 #==========================================
-# 2025/01/30
+# 2025/01/31
 #==========================================
-port: 7890
-socks-port: 7891
+mixed-port: 7890
 allow-lan: true
-mode: Rule
-log-level: info
-external-controller: :9090
-#==========================================
-proxies: ~
+bind-address: '*'
+mode: rule
+unified-delay: true
+ipv6: false
+log-level: silent
+experimental:
+    ignore-resolve-fail: true
+tcp-concurrent: true
+global-client-fingerprint: random
+external-controller: '127.0.0.1:9090'
+dns:
+    enable: true
+    ipv6: false
+    enhanced-mode: fake-ip
+    use-hosts: true
+    fake-ip-range: 198.18.0.1/16
+    fake-ip-filter: [+.lan, +.local, localhost.ptlogin2.qq.com, 'Mijia Cloud', courier.push.apple.com]
+    default-nameserver: [223.5.5.5, 119.29.29.29, 114.114.114.114, '[2402:4e00::]:853', '[2400:3200::1]:853']
+    nameserver: [223.5.5.5, 119.29.29.29, 117.50.11.11, 114.114.114.114, 'https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query', 'tls://[2001:4860:4860::8844]:853', 'tls://[2606:4700:4700::1001]:853']
+    proxy-server-nameserver: ['https://doh.pub/dns-query']
+    fallback: ['tcp://8.8.8.8:53', 'tcp://8.8.4.4:53', 'tcp://208.67.222.222:443', 'tcp://208.67.220.220:443', 'https://1.0.0.1/dns-query', 'tls://dns.rubyfish.cn:853', 'tls://1.0.0.1:853', 'tls://dns.google:853', 'https://dns.rubyfish.cn/dns-query', 'https://cloudflare-dns.com/dns-query', 'https://dns.google/dns-query']
+    fallback-filter: { geoip: true, geoip-code: CN, ipcidr: [240.0.0.0/4], domain: [+.google.com, +.googleapis.com, +.youtube.com, +.appspot.com, +.telegram.com, +.facebook.com, +.twitter.com, +.blogger.com, +.gmail.com, +.gvt1.com] }
 #==========================================
 pr:   &a3 {type: select,   proxies: [Auto, Select, HK, JP, TW, US, SG, DIRECT] }
 p:    &a1 {type: http,     interval: 86400,  health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800} }
