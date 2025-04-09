@@ -1,4 +1,4 @@
-# 2025.02.26
+# 2025.04.10
 ################################################################################
 port: 7890
 socks-port: 7891
@@ -290,6 +290,7 @@ rules:
   - RULE-SET,Ubisoft,Game
   - RULE-SET,Origin,Game
   - RULE-SET,TikTok_y,TikTok
+  - DOMAIN-KEYWORD,truthsocial,Global
   - RULE-SET,ProxyMedia,Global
   - RULE-SET,ProxyLite,Global
   - RULE-SET,ChinaDomain,DIRECT
