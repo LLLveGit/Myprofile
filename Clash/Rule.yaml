@@ -239,6 +239,12 @@ rule-providers:
     interval: 86400
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.yaml
     path: ./ruleset/TikTok.yaml
+  TruthSocial:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TruthSocial/TruthSocial.yaml
+    path: ./ruleset/TruthSocial.yaml
   ProxyMedia:
     type: http
     behavior: classical
@@ -290,7 +296,7 @@ rules:
   - RULE-SET,Ubisoft,Game
   - RULE-SET,Origin,Game
   - RULE-SET,TikTok_y,TikTok
-  - DOMAIN-KEYWORD,truthsocial,Global
+  - RULE-SET,TruthSocial,Global
   - RULE-SET,ProxyMedia,Global
   - RULE-SET,ProxyLite,Global
   - RULE-SET,ChinaDomain,DIRECT
