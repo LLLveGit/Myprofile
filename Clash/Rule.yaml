@@ -291,12 +291,13 @@ rules:
   - RULE-SET,OKX,THK
   - DOMAIN-KEYWORD,bybit,KJT
   - DOMAIN-KEYWORD,gate,TW
+  - DOMAIN-KEYWORD,bitget,TW
   - RULE-SET,Steam,Game
   - RULE-SET,Epic,Game
   - RULE-SET,Ubisoft,Game
   - RULE-SET,Origin,Game
   - RULE-SET,TikTok_y,TikTok
-  - RULE-SET,TruthSocial,Global
+  - RULE-SET,TruthSocial,US
   - RULE-SET,ProxyMedia,Global
   - RULE-SET,ProxyLite,Global
   - RULE-SET,ChinaDomain,DIRECT
