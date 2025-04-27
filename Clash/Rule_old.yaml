@@ -1,0 +1,306 @@
+# 2025.04.10
+################################################################################
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: :9090
+dns:
+  enabled: true
+  nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+  fallback:
+    - 8.8.8.8
+    - 8.8.4.4
+    - tls://1.0.0.1:853
+    - tls://dns.google:853
+################################################################################
+proxy-providers:
+  Subscribe:
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 1800
+    url: 123
+    path: ./proxy_providers/tmp.yaml
+################################################################################
+proxy-groups:
+  - name: Global
+    type: select
+    proxies: [Auto, Select, HK, JP, TW, US, SG, DIRECT]
+  - name: Ai
+    type: select
+    proxies: [US, SG, HK, JP, TW, Select]
+  - name: Game
+    type: select
+    proxies: [HK, JP, TW, US, SG, Select, DIRECT]
+  - name: TikTok
+    type: select
+    proxies: [JP, TW, US, SG, HK, Select]
+  - name: Adblock
+    type: select
+    proxies: [REJECT, DIRECT]
+  - name: Final
+    type: select
+    proxies: [Auto, DIRECT]
+  - name: Select
+    type: select
+    use: [Subscribe]
+  - name: Auto
+    type: url-test
+    lazy: true
+    url: http://www.gstatic.com/generate_204
+    interval: 900
+    use: [Subscribe]
+  - name: HK
+    type: url-test
+    lazy: true
+    url: http://www.gstatic.com/generate_204
+    interval: 900
+    filter: "港|HK|(?i)Hong"
+    use: [Subscribe]
+  - name: JP
+    type: url-test
+    lazy: true
+    url: http://www.gstatic.com/generate_204
+    interval: 900
+    filter: "日本|东京|JP|(?i)Japan"
+    use: [Subscribe]
+  - name: TW
+    type: url-test
+    lazy: true
+    url: http://www.gstatic.com/generate_204
+    interval: 900
+    filter: "台|湾|TW|(?i)Taiwan"
+    use: [Subscribe]
+  - name: US
+    type: url-test
+    lazy: true
+    url: http://www.gstatic.com/generate_204
+    interval: 900
+    filter: "美|US|(?i)States|American"
+    use: [Subscribe]
+  - name: SG
+    type: url-test
+    lazy: true
+    url: http://www.gstatic.com/generate_204
+    interval: 900
+    filter: "新|坡|SG|(?i)Singapore"
+    use: [Subscribe]
+  - name: KJT
+    type: url-test
+    lazy: true
+    url: http://www.gstatic.com/generate_204
+    interval: 900
+    filter: "韩|KR|(?i)Korea|日本|东京|JP|(?i)Japan|台|湾|TW|(?i)Taiwan"
+    use: [Subscribe]
+  - name: THK
+    type: url-test
+    lazy: true
+    url: http://www.gstatic.com/generate_204
+    interval: 900
+    filter: "台|湾|TW|(?i)Taiwan|港|HK|(?i)Hong|韩|KR|(?i)Korea"
+    use: [Subscribe]
+################################################################################
+rule-providers:
+  Revision_direct:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_direct.yaml
+    path: ./ruleset/Revision_direct.yaml
+  AppleID:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleID/AppleID.yaml
+    path: ./ruleset/AppleID.yaml
+  MicrosoftEdge:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/MicrosoftEdge/MicrosoftEdge.yaml
+    path: ./ruleset/MicrosoftEdge.yaml
+  iCloud:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/iCloud/iCloud.yaml
+    path: ./ruleset/iCloud.yaml
+  AdvertisingMiTV:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingMiTV/AdvertisingMiTV.yaml
+    path: ./ruleset/AdvertisingMiTV.yaml
+  LocalAreaNetwork:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/LocalAreaNetwork.yaml
+    path: ./ruleset/LocalAreaNetwork.yaml
+  UnBan:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/UnBan.yaml
+    path: ./ruleset/UnBan.yaml
+  EasyPrivacy:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/EasyPrivacy/EasyPrivacy_Classical.yaml
+    path: ./ruleset/EasyPrivacy.yaml
+  Hijacking:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Hijacking/Hijacking.yaml
+    path: ./ruleset/Hijacking.yaml
+  Privacy:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Privacy/Privacy_Classical.yaml
+    path: ./ruleset/Privacy.yaml
+  OpenAi:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.yaml
+    path: ./ruleset/OpenAi.yaml
+  Bing:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Bing/Bing.yaml
+    path: ./ruleset/Bing.yaml
+  Copilot:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Copilot/Copilot.yaml
+    path: ./ruleset/Copilot.yaml
+  Gemini:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Gemini/Gemini.yaml
+    path: ./ruleset/Gemini.yaml
+  Bahamut:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Bahamut/Bahamut.yaml
+    path: ./ruleset/Bahamut.yaml
+  Binance:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Binance/Binance.yaml
+    path: ./ruleset/Binance.yaml
+  OKX:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OKX/OKX.yaml
+    path: ./ruleset/OKX.yaml
+  Steam:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Steam/Steam.yaml
+    path: ./ruleset/Steam.yaml
+  Epic:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Epic/Epic.yaml
+    path: ./ruleset/Epic.yaml
+  Ubisoft:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Ubisoft/Ubisoft.yaml
+    path: ./ruleset/Ubisoft.yaml
+  Origin:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Origin/Origin.yaml
+    path: ./ruleset/Origin.yaml
+  TikTok_y:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.yaml
+    path: ./ruleset/TikTok.yaml
+  TruthSocial:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TruthSocial/TruthSocial.yaml
+    path: ./ruleset/TruthSocial.yaml
+  ProxyMedia:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ProxyMedia.yaml
+    path: ./ruleset/ProxyMedia.yaml
+  ProxyLite:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ProxyLite.yaml
+    path: ./ruleset/ProxyLite.yaml
+  ChinaDomain:
+    type: http
+    behavior: classical
+    interval: 86400
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ChinaDomain.yaml
+    path: ./ruleset/ChinaDomain.yaml
+  ChinaCompanyIp:
+    type: http
+    behavior: ipcidr
+    interval: 86400
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ChinaCompanyIp.yaml
+    path: ./ruleset/ChinaCompanyIp.yaml
+################################################################################
+rules:
+  - RULE-SET,Revision_direct,DIRECT
+  - RULE-SET,AppleID,DIRECT
+  - RULE-SET,MicrosoftEdge,DIRECT
+  - RULE-SET,iCloud,DIRECT
+  - RULE-SET,AdvertisingMiTV,Adblock
+  - RULE-SET,LocalAreaNetwork,DIRECT
+  - RULE-SET,UnBan,DIRECT
+  - RULE-SET,EasyPrivacy,Adblock
+  - RULE-SET,Hijacking,Adblock
+  - RULE-SET,Privacy,Adblock
+  - RULE-SET,OpenAi,Ai
+  - RULE-SET,Bing,Ai
+  - RULE-SET,Copilot,Ai
+  - RULE-SET,Gemini,Ai
+  - DOMAIN-SUFFIX,perplexity.ai,Ai
+  - RULE-SET,Bahamut,TW
+  - RULE-SET,Binance,KJT
+  - RULE-SET,OKX,THK
+  - DOMAIN-KEYWORD,bybit,KJT
+  - DOMAIN-KEYWORD,gate,TW
+  - DOMAIN-KEYWORD,bitget,TW
+  - RULE-SET,Steam,Game
+  - RULE-SET,Epic,Game
+  - RULE-SET,Ubisoft,Game
+  - RULE-SET,Origin,Game
+  - RULE-SET,TikTok_y,TikTok
+  - RULE-SET,TruthSocial,US
+  - RULE-SET,ProxyMedia,Global
+  - RULE-SET,ProxyLite,Global
+  - RULE-SET,ChinaDomain,DIRECT
+  - RULE-SET,ChinaCompanyIp,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,Final
