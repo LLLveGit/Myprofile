@@ -1,5 +1,5 @@
 # @UpdateTime        2025/04/12 20:45 UTC/GMT +8
-# 2025.04.28
+# 2025.05.08
 port: 7890           # HTTP 代理端口
 socks-port: 7891     # Socks 端口
 redir-port: 7892     # Redir 端口
@@ -117,7 +117,7 @@ rules:
   - RULE-SET,Gemini,Ai
   - DOMAIN-SUFFIX,perplexity.ai,Ai
   - RULE-SET,Bahamut,TW
-  - RULE-SET,Binance,KJT
+  - RULE-SET,Binance,TW
   - RULE-SET,OKX,THK
   - DOMAIN-KEYWORD,bybit,KJT
   - DOMAIN-KEYWORD,gate,TW
