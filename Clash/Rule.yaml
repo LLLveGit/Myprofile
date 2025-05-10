@@ -42,7 +42,7 @@ dns:
     geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
-pr:   &a3 {type: select,   proxies: [Auto, Select, HK, JP, TW, US, SG, Direct] }
+pr:   &a3 {type: select,   proxies: [Auto, Select, HK, JP, TW, US, SG, DIRECT] }
 p:    &a1 {type: http,     interval: 86400,  health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800} }
 auto: &a4 {type: url-test, lazy: true,  url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe] }
 use:  &a2 {type: select,   use: [Subscribe] }
@@ -60,9 +60,9 @@ proxies: null
 proxy-groups:
   - {name: Global, <<: *a3}
   - {name: Ai,      type: select, proxies: [US, SG, HK, JP, TW, Select]}
-  - {name: Game,    type: select, proxies: [HK, JP, TW, US, SG, Select, Direct]}
+  - {name: Game,    type: select, proxies: [HK, JP, TW, US, SG, Select, DIRECT]}
   - {name: TikTok,  type: select, proxies: [JP, TW, US, SG, HK, Select]}
-  - {name: Ad,      type: select, proxies: [Reject, Direct]}
+  - {name: Ad,      type: select, proxies: [REJECT, DIRECT]}
   - {name: Select, <<: *a2}
 
   - {name: Auto, <<: *a4, filter: "^(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
@@ -97,13 +97,13 @@ rule-providers:
   Global123:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global_Classical.yaml,           path: ./ruleset/Global_Classical.yaml}
   Advertising:      {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Advertising/Advertising_Classical.yaml, path: ./ruleset/Advertising_Classical.yaml}
 rules:
-  - RULE-SET,Revision_direct,Direct
-  - RULE-SET,ChinaMax,Direct
-  - RULE-SET,AppleID,Direct
-  - RULE-SET,iCloud,Direct
-  - RULE-SET,MicrosoftEdge,Direct
-  - RULE-SET,OneDrive,Direct
-  - RULE-SET,Lan,Direct
+  - RULE-SET,Revision_direct,DIRECT
+  - RULE-SET,ChinaMax,DIRECT
+  - RULE-SET,AppleID,DIRECT
+  - RULE-SET,iCloud,DIRECT
+  - RULE-SET,MicrosoftEdge,DIRECT
+  - RULE-SET,OneDrive,DIRECT
+  - RULE-SET,Lan,DIRECT
   - RULE-SET,OpenAi,Ai
   - RULE-SET,Bing,Ai
   - RULE-SET,Copilot,Ai
