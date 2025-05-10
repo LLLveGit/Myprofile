@@ -1,19 +1,19 @@
 # @UpdateTime        2025/04/12 20:45 UTC/GMT +8
 # 2025.05.08
-port: 7890           # HTTP 代理端口
-socks-port: 7891     # Socks 端口
-redir-port: 7892     # Redir 端口
-mixed-port: 7893     # 混合端口
-allow-lan: true      # 允许局域网连接
-bind-address: "*"    # 地址绑定
-mode: rule           # 规则模式
-log-level: info      # 日志级别
-ipv6: false          # IPV6开关
+port: 7890           
+socks-port: 7891     
+redir-port: 7892     
+mixed-port: 7893     
+allow-lan: true      
+bind-address: "*"    
+mode: rule           
+log-level: info      
+ipv6: false          
 external-controller: 127.0.0.1:9090
 dns:
-  enable: true       # 不使用系统 DNS
-  ipv6: false        # 关闭 IPV6
-  listen: 0.0.0.0:53 # dns 监听
+  enable: true      
+  ipv6: false        
+  listen: 0.0.0.0:53 
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
@@ -30,10 +30,10 @@ dns:
     - "*.battlenet.com"
     - "*.blzstatic.cn"
     - "*.battle.net"
-  nameserver:        # 默认 DNS 服务
+  nameserver:        
     - 223.5.5.5
     - 119.29.29.29
-  fallback:          # 国外 DNS 服务器
+  fallback:          
     - https://cloudflare-dns.com/dns-query
     - https://dns.google/dns-query
     - https://dns.alidns.com/dns-query
@@ -42,9 +42,7 @@ dns:
     geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
-#========= 建立锚点 =========#
-# 策略组引用
-pr:   &a3 {type: select,   proxies: [Auto, Select, HK, JP, TW, US, SG, DIRECT] }
+pr:   &a3 {type: select,   proxies: [Auto, Select, HK, JP, TW, US, SG, Direct] }
 p:    &a1 {type: http,     interval: 86400,  health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800} }
 auto: &a4 {type: url-test, lazy: true,  url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe] }
 use:  &a2 {type: select,   use: [Subscribe] }
@@ -60,57 +58,52 @@ proxy-providers:
     path: ./proxy_providers/tmp.yaml  
 proxies: null
 proxy-groups:
-#分流分组
   - {name: Global, <<: *a3}
   - {name: Ai,      type: select, proxies: [US, SG, HK, JP, TW, Select]}
-  - {name: Game,    type: select, proxies: [HK, JP, TW, US, SG, Select, DIRECT]}
+  - {name: Game,    type: select, proxies: [HK, JP, TW, US, SG, Select, Direct]}
   - {name: TikTok,  type: select, proxies: [JP, TW, US, SG, HK, Select]}
+  - {name: Ad,      type: select, proxies: [Reject, Direct]}
   - {name: Select, <<: *a2}
-#节点分组
-# a4更改为a2，即为手动选择
+
   - {name: Auto, <<: *a4, filter: "^(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
-  - {name: HK, <<: *a4, filter: "^(?=.*(港|HK|(?i)Hong))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
-  - {name: JP, <<: *a4, filter: "^(?=.*(日本|东京|JP|(?i)Japan))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
-  - {name: TW, <<: *a4, filter: "^(?=.*(台|湾|TW|(?i)Taiwan))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
-  - {name: US, <<: *a4, filter: "^(?=.*(美|US|(?i)States|American))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
-  - {name: SG, <<: *a4, filter: "^(?=.*(新|坡|SG|(?i)Singapore))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
-  - {name: KJT, <<: *a4, filter: "^(?=.*(韩|KR|(?i)Korea|日本|东京|JP|(?i)Japan|台|湾|TW|(?i)Taiwan))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
-  - {name: THK, <<: *a4, filter: "^(?=.*(台|湾|TW|(?i)Taiwan|港|HK|(?i)Hong|韩|KR|(?i)Korea))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
-# 分流规则 
+  - {name: HK,   <<: *a4, filter: "^(?=.*(港|HK|(?i)Hong))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
+  - {name: JP,   <<: *a4, filter: "^(?=.*(日本|东京|JP|(?i)Japan))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
+  - {name: TW,   <<: *a4, filter: "^(?=.*(台|湾|TW|(?i)Taiwan))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
+  - {name: US,   <<: *a4, filter: "^(?=.*(美|US|(?i)States|American))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
+  - {name: SG,   <<: *a4, filter: "^(?=.*(新|坡|SG|(?i)Singapore))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
+  - {name: KJT,  <<: *a4, filter: "^(?=.*(韩|KR|(?i)Korea|日本|东京|JP|(?i)Japan|台|湾|TW|(?i)Taiwan))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
+  - {name: THK,  <<: *a4, filter: "^(?=.*(台|湾|TW|(?i)Taiwan|港|HK|(?i)Hong|韩|KR|(?i)Korea))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
 rule-providers:
-  Revision_direct:  {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_direct.yaml,                              path: ./ruleset/Revision_direct.yaml}
-  ChinaDomain:      {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ChinaDomain.yaml,                         path: ./ruleset/ChinaDomain.yaml}
-  ChinaCompanyIp:   {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ChinaCompanyIp.yaml,                      path: ./ruleset/ChinaCompanyIp.yaml}
-  AppleID:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleID/AppleID.yaml,             path: ./ruleset/AppleID.yaml}
-  MicrosoftEdge:    {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/MicrosoftEdge/MicrosoftEdge.yaml, path: ./ruleset/MicrosoftEdge.yaml}
-  iCloud:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/iCloud/iCloud.yaml,               path: ./ruleset/iCloud.yaml} 
-  LocalAreaNetwork: {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/LocalAreaNetwork.yaml,                    path: ./ruleset/LocalAreaNetwork.yaml}
-  UnBan:            {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/UnBan.yaml,                               path: ./ruleset/UnBan.yaml}
-  OpenAi:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.yaml,               path: ./ruleset/OpenAI.yaml}
-  Bing:             {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Bing/Bing.yaml,                   path: ./ruleset/Bing.yaml}
-  Copilot:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Copilot/Copilot.yaml,             path: ./ruleset/Copilot.yaml}
-  Gemini:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Gemini/Gemini.yaml,               path: ./ruleset/Gemini.yaml}
-  Bahamut:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Bahamut/Bahamut.yaml,             path: ./ruleset/Bahamut.yaml}
-  Binance:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Binance/Binance.yaml,             path: ./ruleset/Binance.yaml}
-  OKX:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OKX/OKX.yaml,                     path: ./ruleset/OKX.yaml}
-  Steam:            {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Steam/Steam.yaml,                 path: ./ruleset/Steam.yaml}
-  Epic:             {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Epic/Epic.yaml,                   path: ./ruleset/Epic.yaml}
-  Ubisoft:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Ubisoft/Ubisoft.yaml,             path: ./ruleset/Ubisoft.yaml}
-  Origin:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Origin/Origin.yaml,               path: ./ruleset/Origin.yaml}
-  TikTok_y:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.yaml,               path: ./ruleset/TikTok.yaml}
-  TruthSocial:      {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TruthSocial/TruthSocial.yaml,     path: ./ruleset/TruthSocial.yaml}
-  ProxyMedia:       {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ProxyMedia.yaml,                          path: ./ruleset/ProxyMedia.yaml}
-  ProxyLite:        {<<: *a6, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/ProxyLite.yaml,                           path: ./ruleset/ProxyLite.yaml}
-# 分流Policy 
+  Revision_direct:  {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_direct.yaml,                                    path: ./ruleset/Revision_direct.yaml}
+  ChinaMax:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_Classical.yaml,       path: ./ruleset/ChinaMax_Classical.yaml}
+  AppleID:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleID/AppleID.yaml,                   path: ./ruleset/AppleID.yaml}
+  iCloud:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/iCloud/iCloud.yaml,                     path: ./ruleset/iCloud.yaml} 
+  MicrosoftEdge:    {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/MicrosoftEdge/MicrosoftEdge.yaml,       path: ./ruleset/MicrosoftEdge.yaml}
+  OneDrive:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OneDrive/OneDrive.yaml,                 path: ./ruleset/OneDrive.yaml}
+  Lan:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.yaml,                           path: ./ruleset/Lan.yaml}
+  OpenAi:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.yaml,                     path: ./ruleset/OpenAI.yaml}
+  Bing:             {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Bing/Bing.yaml,                         path: ./ruleset/Bing.yaml}
+  Copilot:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Copilot/Copilot.yaml,                   path: ./ruleset/Copilot.yaml}
+  Gemini:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Gemini/Gemini.yaml,                     path: ./ruleset/Gemini.yaml}
+  Bahamut:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Bahamut/Bahamut.yaml,                   path: ./ruleset/Bahamut.yaml}
+  Binance:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Binance/Binance.yaml,                   path: ./ruleset/Binance.yaml}
+  OKX:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OKX/OKX.yaml,                           path: ./ruleset/OKX.yaml}
+  Steam:            {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Steam/Steam.yaml,                       path: ./ruleset/Steam.yaml}
+  Epic:             {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Epic/Epic.yaml,                         path: ./ruleset/Epic.yaml}
+  Ubisoft:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Ubisoft/Ubisoft.yaml,                   path: ./ruleset/Ubisoft.yaml}
+  Origin:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Origin/Origin.yaml,                     path: ./ruleset/Origin.yaml}
+  TikTok123:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.yaml,                     path: ./ruleset/TikTok.yaml}
+  TruthSocial:      {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TruthSocial/TruthSocial.yaml,           path: ./ruleset/TruthSocial.yaml}
+  Global123:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global_Classical.yaml,           path: ./ruleset/Global_Classical.yaml}
+  Advertising:      {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Advertising/Advertising_Classical.yaml, path: ./ruleset/Advertising_Classical.yaml}
 rules:
-  - RULE-SET,Revision_direct,DIRECT
-  - RULE-SET,ChinaDomain,DIRECT
-  - RULE-SET,ChinaCompanyIp,DIRECT
-  - RULE-SET,AppleID,DIRECT
-  - RULE-SET,MicrosoftEdge,DIRECT
-  - RULE-SET,iCloud,DIRECT
-  - RULE-SET,LocalAreaNetwork,DIRECT
-  - RULE-SET,UnBan,DIRECT
+  - RULE-SET,Revision_direct,Direct
+  - RULE-SET,ChinaMax,Direct
+  - RULE-SET,AppleID,Direct
+  - RULE-SET,iCloud,Direct
+  - RULE-SET,MicrosoftEdge,Direct
+  - RULE-SET,OneDrive,Direct
+  - RULE-SET,Lan,Direct
   - RULE-SET,OpenAi,Ai
   - RULE-SET,Bing,Ai
   - RULE-SET,Copilot,Ai
@@ -126,14 +119,9 @@ rules:
   - RULE-SET,Epic,Game
   - RULE-SET,Ubisoft,Game
   - RULE-SET,Origin,Game
-  - RULE-SET,TikTok_y,TikTok
+  - RULE-SET,TikTok123,TikTok
   - RULE-SET,TruthSocial,US
-  - RULE-SET,ProxyMedia,Global
-  - RULE-SET,ProxyLite,Global
+  - RULE-SET,Global123,Global
+  - RULE-SET,Advertising,Ad
   - GEOIP,CN,DIRECT
-  - MATCH,Auto
-# TUN模式是通过在操作系统上安装一个虚拟网卡来实现的，它可以接管所有的网络流量，并将流量转发至Clash，然后由Clash发出请求
-# Windows 系统中如何启用TUN模式
-# 1、运行 Clash For Windows, 确保使用规则模式，并可以联网
-# 2、点击 General中的Service Mode右侧的Manage按钮，在弹出窗口中选择schtasks，安装服务模式。安装完成后，应用程序会自动重启，Service Mode右侧的地球图标变为绿色表示安装成功
-# 3、点击 General中的TUN Mode右侧的开关以启动TUN模式
+  - MATCH,Global
