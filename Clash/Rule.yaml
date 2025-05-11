@@ -1,5 +1,5 @@
 # @UpdateTime        2025/04/12 20:45 UTC/GMT +8
-# 2025.05.10
+# 2025.05.11
 port: 7890           
 socks-port: 7891     
 redir-port: 7892     
@@ -75,12 +75,12 @@ proxy-groups:
   - {name: THK,  <<: *a4, filter: "^(?=.*(台|湾|TW|(?i)Taiwan|港|HK|(?i)Hong|韩|KR|(?i)Korea))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
 rule-providers:
   Revision_direct:  {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_direct.yaml,                                    path: ./ruleset/Revision_direct.yaml}
-  ChinaMax:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_Classical.yaml,       path: ./ruleset/ChinaMax_Classical.yaml}
+  Direct:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Direct/Direct.yaml,                     path: ./ruleset/Direct.yaml}
+  Advertising:      {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Advertising/Advertising_Classical.yaml, path: ./ruleset/Advertising.yaml}
   AppleID:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleID/AppleID.yaml,                   path: ./ruleset/AppleID.yaml}
   iCloud:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/iCloud/iCloud.yaml,                     path: ./ruleset/iCloud.yaml} 
   MicrosoftEdge:    {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/MicrosoftEdge/MicrosoftEdge.yaml,       path: ./ruleset/MicrosoftEdge.yaml}
   OneDrive:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OneDrive/OneDrive.yaml,                 path: ./ruleset/OneDrive.yaml}
-  Lan:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.yaml,                           path: ./ruleset/Lan.yaml}
   OpenAi:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.yaml,                     path: ./ruleset/OpenAI.yaml}
   Bing:             {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Bing/Bing.yaml,                         path: ./ruleset/Bing.yaml}
   Copilot:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Copilot/Copilot.yaml,                   path: ./ruleset/Copilot.yaml}
@@ -92,18 +92,21 @@ rule-providers:
   Epic:             {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Epic/Epic.yaml,                         path: ./ruleset/Epic.yaml}
   Ubisoft:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Ubisoft/Ubisoft.yaml,                   path: ./ruleset/Ubisoft.yaml}
   Origin:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Origin/Origin.yaml,                     path: ./ruleset/Origin.yaml}
-  TikTok123:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.yaml,                     path: ./ruleset/TikTok.yaml}
+  TikTok:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.yaml,                     path: ./ruleset/TikTok.yaml}
   TruthSocial:      {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TruthSocial/TruthSocial.yaml,           path: ./ruleset/TruthSocial.yaml}
-  Global123:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global_Classical.yaml,           path: ./ruleset/Global_Classical.yaml}
-  Advertising:      {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Advertising/Advertising_Classical.yaml, path: ./ruleset/Advertising_Classical.yaml}
+  Global:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global_Classical.yaml,           path: ./ruleset/Global.yaml}
+  Lan:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.yaml,                           path: ./ruleset/Lan.yaml}
+  Download:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Download/Download.yaml,                 path: ./ruleset/Download.yaml}
+  ChinaMax:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_Classical.yaml,       path: ./ruleset/ChinaMax.yaml}
+
 rules:
   - RULE-SET,Revision_direct,DIRECT
-  - RULE-SET,ChinaMax,DIRECT
+  - RULE-SET,Direct,DIRECT
+  - RULE-SET,Advertising,Ad
   - RULE-SET,AppleID,DIRECT
   - RULE-SET,iCloud,DIRECT
   - RULE-SET,MicrosoftEdge,DIRECT
-  - RULE-SET,OneDrive,DIRECT
-  - RULE-SET,Lan,DIRECT
+  - RULE-SET,OneDrive,Global
   - RULE-SET,OpenAi,Ai
   - RULE-SET,Bing,Ai
   - RULE-SET,Copilot,Ai
@@ -119,9 +122,11 @@ rules:
   - RULE-SET,Epic,Game
   - RULE-SET,Ubisoft,Game
   - RULE-SET,Origin,Game
-  - RULE-SET,TikTok123,TikTok
+  - RULE-SET,TikTok,TikTok
   - RULE-SET,TruthSocial,US
-  - RULE-SET,Global123,Global
-  - RULE-SET,Advertising,Ad
+  - RULE-SET,Global,Global
+  - RULE-SET,Lan,DIRECT
+  - RULE-SET,Download,DIRECT
+  - RULE-SET,ChinaMax,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,Global
