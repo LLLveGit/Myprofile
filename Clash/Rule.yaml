@@ -1,5 +1,5 @@
 # @UpdateTime 2025/04/12 20:45 UTC/GMT +8
-# 2025.05.11  15:08
+# 2025.05.11  16:22
 port: 7890
 socks-port: 7891
 redir-port: 7892
@@ -62,7 +62,6 @@ proxy-groups:
   - {name: Ai,      type: select, proxies: [US, SG, HK, JP, TW, Select]}
   - {name: Game,    type: select, proxies: [HK, JP, TW, US, SG, Select, DIRECT]}
   - {name: TikTok,  type: select, proxies: [JP, TW, US, SG, HK, Select]}
-  - {name: Ad,      type: select, proxies: [REJECT, DIRECT]}
   - {name: Select, <<: *a2}
 
   - {name: Auto, <<: *a4, filter: "^(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
@@ -75,8 +74,6 @@ proxy-groups:
   - {name: THK,  <<: *a4, filter: "^(?=.*(台|湾|TW|(?i)Taiwan|港|HK|(?i)Hong|韩|KR|(?i)Korea))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
 rule-providers:
   Revision_direct:  {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_direct.yaml,                                    path: ./ruleset/Revision_direct.yaml}
-  Direct:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Direct/Direct.yaml,                     path: ./ruleset/Direct.yaml}
-  Advertising:      {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Advertising/Advertising_Classical.yaml, path: ./ruleset/Advertising.yaml}
   AppleID:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleID/AppleID.yaml,                   path: ./ruleset/AppleID.yaml}
   iCloud:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/iCloud/iCloud.yaml,                     path: ./ruleset/iCloud.yaml} 
   MicrosoftEdge:    {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/MicrosoftEdge/MicrosoftEdge.yaml,       path: ./ruleset/MicrosoftEdge.yaml}
@@ -95,13 +92,9 @@ rule-providers:
   TikTok:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.yaml,                     path: ./ruleset/TikTok.yaml}
   TruthSocial:      {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TruthSocial/TruthSocial.yaml,           path: ./ruleset/TruthSocial.yaml}
   ProxyLite:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ProxyLite/ProxyLite.yaml,               path: ./ruleset/ProxyLite.yaml}
-  Lan:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.yaml,                           path: ./ruleset/Lan.yaml}
-  Download:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Download/Download.yaml,                 path: ./ruleset/Download.yaml}
   China:            {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/China/China_Classical.yaml,             path: ./ruleset/China.yaml}
 rules:
   - RULE-SET,Revision_direct,DIRECT
-  - RULE-SET,Direct,DIRECT
-  - RULE-SET,Advertising,Ad
   - RULE-SET,AppleID,DIRECT
   - RULE-SET,iCloud,DIRECT
   - RULE-SET,MicrosoftEdge,DIRECT
@@ -124,8 +117,6 @@ rules:
   - RULE-SET,TikTok,TikTok
   - RULE-SET,TruthSocial,US
   - RULE-SET,ProxyLite,Global
-  - RULE-SET,Lan,DIRECT
-  - RULE-SET,Download,DIRECT
   - RULE-SET,China,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,Global
