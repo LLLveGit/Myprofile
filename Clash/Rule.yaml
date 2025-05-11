@@ -1,19 +1,19 @@
-# @UpdateTime        2025/04/12 20:45 UTC/GMT +8
+# @UpdateTime 2025/04/12 20:45 UTC/GMT +8
 # 2025.05.11
-port: 7890           
-socks-port: 7891     
-redir-port: 7892     
-mixed-port: 7893     
-allow-lan: true      
-bind-address: "*"    
-mode: rule           
-log-level: info      
-ipv6: false          
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+allow-lan: true
+bind-address: "*"
+mode: rule
+log-level: info
+ipv6: false
 external-controller: 127.0.0.1:9090
 dns:
-  enable: true      
-  ipv6: false        
-  listen: 0.0.0.0:53 
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:53
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
@@ -30,10 +30,10 @@ dns:
     - "*.battlenet.com"
     - "*.blzstatic.cn"
     - "*.battle.net"
-  nameserver:        
+  nameserver:
     - 223.5.5.5
     - 119.29.29.29
-  fallback:          
+  fallback:
     - https://cloudflare-dns.com/dns-query
     - https://dns.google/dns-query
     - https://dns.alidns.com/dns-query
@@ -76,7 +76,7 @@ proxy-groups:
 rule-providers:
   Revision_direct:  {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_direct.yaml,                                    path: ./ruleset/Revision_direct.yaml}
   Direct:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Direct/Direct.yaml,                     path: ./ruleset/Direct.yaml}
-  adrules:          {<<: *a5, url: https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_domainset.txt,                                                     path: ./ruleset/adrules.yaml}
+  Advertising:      {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Advertising/Advertising_Classical.yaml, path: ./ruleset/Advertising.yaml}
   AppleID:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleID/AppleID.yaml,                   path: ./ruleset/AppleID.yaml}
   iCloud:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/iCloud/iCloud.yaml,                     path: ./ruleset/iCloud.yaml} 
   MicrosoftEdge:    {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/MicrosoftEdge/MicrosoftEdge.yaml,       path: ./ruleset/MicrosoftEdge.yaml}
@@ -95,14 +95,13 @@ rule-providers:
   TikTok:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.yaml,                     path: ./ruleset/TikTok.yaml}
   TruthSocial:      {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TruthSocial/TruthSocial.yaml,           path: ./ruleset/TruthSocial.yaml}
   ProxyLite:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ProxyLite/ProxyLite.yaml,               path: ./ruleset/ProxyLite.yaml}
-#  Lan:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.yaml,                           path: ./ruleset/Lan.yaml}
+  Lan:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.yaml,                           path: ./ruleset/Lan.yaml}
   Download:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Download/Download.yaml,                 path: ./ruleset/Download.yaml}
   China:            {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/China/China_Classical.yaml,             path: ./ruleset/China.yaml}
-
 rules:
   - RULE-SET,Revision_direct,DIRECT
   - RULE-SET,Direct,DIRECT
-  - RULE-SET,adrules,Ad
+  - RULE-SET,Advertising,Ad
   - RULE-SET,AppleID,DIRECT
   - RULE-SET,iCloud,DIRECT
   - RULE-SET,MicrosoftEdge,DIRECT
@@ -125,7 +124,7 @@ rules:
   - RULE-SET,TikTok,TikTok
   - RULE-SET,TruthSocial,US
   - RULE-SET,ProxyLite,Global
-#  - RULE-SET,Lan,DIRECT
+  - RULE-SET,Lan,DIRECT
   - RULE-SET,Download,DIRECT
   - RULE-SET,China,DIRECT
   - GEOIP,CN,DIRECT
