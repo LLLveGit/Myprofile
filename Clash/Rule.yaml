@@ -94,10 +94,10 @@ rule-providers:
   Origin:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Origin/Origin.yaml,                     path: ./ruleset/Origin.yaml}
   TikTok:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.yaml,                     path: ./ruleset/TikTok.yaml}
   TruthSocial:      {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TruthSocial/TruthSocial.yaml,           path: ./ruleset/TruthSocial.yaml}
-  Global:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global_Classical.yaml,           path: ./ruleset/Global.yaml}
+  ProxyLite:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ProxyLite/ProxyLite.yaml,               path: ./ruleset/ProxyLite.yaml}
 #  Lan:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.yaml,                           path: ./ruleset/Lan.yaml}
   Download:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Download/Download.yaml,                 path: ./ruleset/Download.yaml}
-  ChinaMax:         {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_Classical.yaml,       path: ./ruleset/ChinaMax.yaml}
+  China:            {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/China/China_Classical.yaml,             path: ./ruleset/China.yaml}
 
 rules:
   - RULE-SET,Revision_direct,DIRECT
@@ -124,9 +124,9 @@ rules:
   - RULE-SET,Origin,Game
   - RULE-SET,TikTok,TikTok
   - RULE-SET,TruthSocial,US
-  - RULE-SET,Global,Global
+  - RULE-SET,ProxyLite,Global
 #  - RULE-SET,Lan,DIRECT
   - RULE-SET,Download,DIRECT
-  - RULE-SET,ChinaMax,DIRECT
+  - RULE-SET,China,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,Global
