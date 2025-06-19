@@ -1,5 +1,5 @@
 # @UpdateTime 2025/04/12 20:45 UTC/GMT +8
-# 2025.05.11  16:22
+# 2025.06.19  14:29
 port: 7890
 socks-port: 7891
 redir-port: 7892
@@ -87,6 +87,7 @@ rule-providers:
   OKX:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OKX/OKX.yaml,                           path: ./ruleset/OKX.yaml}
   Steam:            {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Steam/Steam.yaml,                       path: ./ruleset/Steam.yaml}
   Epic:             {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Epic/Epic.yaml,                         path: ./ruleset/Epic.yaml}
+  Xbox:             {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Xbox/Xbox.yaml,                         path: ./ruleset/Xbox.yaml}
   Ubisoft:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Ubisoft/Ubisoft.yaml,                   path: ./ruleset/Ubisoft.yaml}
   Origin:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Origin/Origin.yaml,                     path: ./ruleset/Origin.yaml}
   TikTok:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.yaml,                     path: ./ruleset/TikTok.yaml}
@@ -100,18 +101,19 @@ rules:
   - RULE-SET,MicrosoftEdge,DIRECT
   - RULE-SET,OneDrive,Global
   - RULE-SET,OpenAi,Ai
-  - RULE-SET,Bing,Ai
+  - RULE-SET,Bing,DIRECT
   - RULE-SET,Copilot,Ai
   - RULE-SET,Gemini,Ai
   - DOMAIN-SUFFIX,perplexity.ai,Ai
   - RULE-SET,Bahamut,TW
   - RULE-SET,Binance,TW
-  - RULE-SET,OKX,THK
+  - RULE-SET,OKX,TW
   - DOMAIN-KEYWORD,bybit,KJT
   - DOMAIN-KEYWORD,gate,TW
   - DOMAIN-KEYWORD,bitget,TW
   - RULE-SET,Steam,Game
   - RULE-SET,Epic,Game
+  - RULE-SET,Xbox,Game
   - RULE-SET,Ubisoft,Game
   - RULE-SET,Origin,Game
   - RULE-SET,TikTok,TikTok
