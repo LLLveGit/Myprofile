@@ -64,14 +64,14 @@ proxy-groups:
   - {name: TikTok,  type: select, proxies: [JP, TW, US, SG, HK, Select]}
   - {name: Select, <<: *a2}
 
-  - {name: Auto, <<: *a4, filter: "^(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
-  - {name: HK,   <<: *a4, filter: "^(?=.*(港|HK|(?i)Hong))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
-  - {name: JP,   <<: *a4, filter: "^(?=.*(日本|东京|JP|(?i)Japan))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
-  - {name: TW,   <<: *a4, filter: "^(?=.*(台|湾|TW|(?i)Taiwan))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
-  - {name: US,   <<: *a4, filter: "^(?=.*(美|US|(?i)States|American))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
-  - {name: SG,   <<: *a4, filter: "^(?=.*(新|坡|SG|(?i)Singapore))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
-  - {name: KJT,  <<: *a4, filter: "^(?=.*(韩|KR|(?i)Korea|日本|东京|JP|(?i)Japan|台|湾|TW|(?i)Taiwan))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
-  - {name: THK,  <<: *a4, filter: "^(?=.*(台|湾|TW|(?i)Taiwan|港|HK|(?i)Hong|韩|KR|(?i)Korea))(?!.*(机场|订阅|25倍|剩余|套餐|IEPL)).*$"}
+  - {name: Auto, <<: *a4, filter: "^(?!.*(机场|订阅|25倍|剩余|套餐|三网)).*$"}
+  - {name: HK,   <<: *a4, filter: "^(?=.*(港|HK|(?i)Hong))(?!.*(机场|订阅|25倍|剩余|套餐|三网)).*$"}
+  - {name: JP,   <<: *a4, filter: "^(?=.*(日本|东京|JP|(?i)Japan))(?!.*(机场|订阅|25倍|剩余|套餐|三网)).*$"}
+  - {name: TW,   <<: *a4, filter: "^(?=.*(台|湾|TW|(?i)Taiwan))(?!.*(机场|订阅|25倍|剩余|套餐|三网)).*$"}
+  - {name: US,   <<: *a4, filter: "^(?=.*(美|US|(?i)States|American))(?!.*(机场|订阅|25倍|剩余|套餐|三网)).*$"}
+  - {name: SG,   <<: *a4, filter: "^(?=.*(新|坡|SG|(?i)Singapore))(?!.*(机场|订阅|25倍|剩余|套餐|三网)).*$"}
+  - {name: KJT,  <<: *a4, filter: "^(?=.*(韩|KR|(?i)Korea|日本|东京|JP|(?i)Japan|台|湾|TW|(?i)Taiwan))(?!.*(机场|订阅|25倍|剩余|套餐|三网)).*$"}
+  - {name: THK,  <<: *a4, filter: "^(?=.*(台|湾|TW|(?i)Taiwan|港|HK|(?i)Hong|韩|KR|(?i)Korea))(?!.*(机场|订阅|25倍|剩余|套餐|三网)).*$"}
 rule-providers:
   Revision_direct:  {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_direct.yaml,                                    path: ./ruleset/Revision_direct.yaml}
   AppleID:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleID/AppleID.yaml,                   path: ./ruleset/AppleID.yaml}
