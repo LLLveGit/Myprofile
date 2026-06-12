@@ -1,5 +1,5 @@
 # @UpdateTime 2025/04/12 20:45 UTC/GMT +8
-# 2025.06.19  14:29
+# 2026.06.12  17:53
 port: 7890
 socks-port: 7891
 redir-port: 7892
@@ -73,6 +73,7 @@ proxy-groups:
   - {name: KJT,  <<: *a4, filter: "^(?=.*(韩|KR|(?i)Korea|日本|东京|JP|(?i)Japan|台|湾|TW|(?i)Taiwan))(?!.*(机场|订阅|25倍|剩余|套餐|三网|官网|重置|刷新|到期)).*$"}
   - {name: THK,  <<: *a4, filter: "^(?=.*(台|湾|TW|(?i)Taiwan|港|HK|(?i)Hong|韩|KR|(?i)Korea))(?!.*(机机场|订阅|25倍|剩余|套餐|三网|官网|重置|刷新|到期)).*$"}
 rule-providers:
+  Gemini:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Gemini/Gemini.yaml,                     path: ./ruleset/Gemini.yaml}
   Revision_direct:  {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_direct.yaml,                                    path: ./ruleset/Revision_direct.yaml}
   AppleID:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleID/AppleID.yaml,                   path: ./ruleset/AppleID.yaml}
   iCloud:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/iCloud/iCloud.yaml,                     path: ./ruleset/iCloud.yaml} 
@@ -81,7 +82,7 @@ rule-providers:
   OpenAi:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.yaml,                     path: ./ruleset/OpenAI.yaml}
   Bing:             {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Bing/Bing.yaml,                         path: ./ruleset/Bing.yaml}
   Copilot:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Copilot/Copilot.yaml,                   path: ./ruleset/Copilot.yaml}
-  Gemini:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Gemini/Gemini.yaml,                     path: ./ruleset/Gemini.yaml}
+  Claude:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Claude/Claude.yaml,                     path: ./ruleset/Claude.yaml}
   Bahamut:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Bahamut/Bahamut.yaml,                   path: ./ruleset/Bahamut.yaml}
   Binance:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Binance/Binance.yaml,                   path: ./ruleset/Binance.yaml}
   OKX:              {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OKX/OKX.yaml,                           path: ./ruleset/OKX.yaml}
@@ -95,6 +96,14 @@ rule-providers:
   ProxyLite:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ProxyLite/ProxyLite.yaml,               path: ./ruleset/ProxyLite.yaml}
   China:            {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/China/China_Classical.yaml,             path: ./ruleset/China.yaml}
 rules:
+  - DOMAIN-SUFFIX,lbkrs.com,HK
+  - DOMAIN-SUFFIX,lbctrl.com,HK
+  - DOMAIN-SUFFIX,wbrks.com,HK
+  - DOMAIN-SUFFIX,longbridgeapp.com,HK
+  - DOMAIN-KEYWORD,longbridge,HK
+  - DOMAIN-KEYWORD,lbkrs,HK
+
+  - RULE-SET,Gemini,Ai
   - RULE-SET,Revision_direct,DIRECT
   - RULE-SET,AppleID,DIRECT
   - RULE-SET,iCloud,DIRECT
@@ -103,8 +112,9 @@ rules:
   - RULE-SET,OpenAi,Ai
   - RULE-SET,Bing,DIRECT
   - RULE-SET,Copilot,Ai
-  - RULE-SET,Gemini,Ai
+  - RULE-SET,Claude,Ai  
   - DOMAIN-SUFFIX,perplexity.ai,Ai
+  - DOMAIN-KEYWORD,5dm,DIRECT
   - RULE-SET,Bahamut,TW
   - RULE-SET,Binance,TW
   - RULE-SET,OKX,TW
