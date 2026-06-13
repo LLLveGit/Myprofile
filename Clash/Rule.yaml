@@ -96,11 +96,7 @@ rule-providers:
   ProxyLite:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ProxyLite/ProxyLite.yaml,               path: ./ruleset/ProxyLite.yaml}
   China:            {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/China/China_Classical.yaml,             path: ./ruleset/China.yaml}
 rules:
-  - DOMAIN-SUFFIX,lbkrs.com,HK
-  - DOMAIN-SUFFIX,lbctrl.com,HK
-  - DOMAIN-SUFFIX,wbrks.com,HK
-  - DOMAIN-SUFFIX,longbridgeapp.com,HK
-  - DOMAIN-KEYWORD,longbridge,HK
+  - DOMAIN-SUFFIX,api-status.longbridgeapp.com,HK
   - DOMAIN-KEYWORD,lbkrs,HK
 
   - RULE-SET,Gemini,Ai
