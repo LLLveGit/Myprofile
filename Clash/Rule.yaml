@@ -1,5 +1,5 @@
-# @UpdateTime 2025/04/12 20:45 UTC/GMT +8
-# 2026.06.12  17:53
+# 2026.06.25
+
 port: 7890
 socks-port: 7891
 redir-port: 7892
@@ -52,7 +52,7 @@ i:    &a7 {type: http,     behavior: ipcidr,    interval: 86400}
 proxy-providers:
   Subscribe:
     <<: *a1
-    url: 123
+    url: 132
     # URL后面填写格式1[单一订阅]: 直接填写你的机场Clash订阅[推荐此种方式，避免订阅泄露]
     # URL后面填写格式2[多个订阅]：https://api.nexconvert.com/sub?target=clash&url=请手动填入你的订阅(多机场订阅用|分割即可)&emoji=true&list=true&new_name=true&udp=false
     path: ./proxy_providers/tmp.yaml  
@@ -73,6 +73,7 @@ proxy-groups:
   - {name: KJT,  <<: *a4, filter: "^(?=.*(韩|KR|(?i)Korea|日本|东京|JP|(?i)Japan|台|湾|TW|(?i)Taiwan))(?!.*(机场|订阅|25倍|剩余|套餐|三网|官网|重置|刷新|到期)).*$"}
   - {name: THK,  <<: *a4, filter: "^(?=.*(台|湾|TW|(?i)Taiwan|港|HK|(?i)Hong|韩|KR|(?i)Korea))(?!.*(机机场|订阅|25倍|剩余|套餐|三网|官网|重置|刷新|到期)).*$"}
 rule-providers:
+  Broker:           {<<: *a6, url: https://raw.githubusercontent.com/Arthur-vx/broker-rules/main/rule/Clash/Broker/Broker.yaml,                                        path: ./ruleset/Broker.yaml}
   Gemini:           {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Gemini/Gemini.yaml,                     path: ./ruleset/Gemini.yaml}
   Revision_direct:  {<<: *a6, url: https://raw.githubusercontent.com/LLLveGit/Myprofile/refs/heads/main/Clash/Revision_direct.yaml,                                    path: ./ruleset/Revision_direct.yaml}
   AppleID:          {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleID/AppleID.yaml,                   path: ./ruleset/AppleID.yaml}
@@ -96,9 +97,7 @@ rule-providers:
   ProxyLite:        {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ProxyLite/ProxyLite.yaml,               path: ./ruleset/ProxyLite.yaml}
   China:            {<<: *a6, url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/China/China_Classical.yaml,             path: ./ruleset/China.yaml}
 rules:
-  - DOMAIN-SUFFIX,api-status.longbridgeapp.com,HK
-  - DOMAIN-KEYWORD,lbkrs,HK
-
+  - RULE-SET,Broker,HK
   - RULE-SET,Gemini,Ai
   - RULE-SET,Revision_direct,DIRECT
   - RULE-SET,AppleID,DIRECT
